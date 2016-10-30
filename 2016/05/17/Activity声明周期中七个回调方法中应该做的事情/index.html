@@ -99,7 +99,7 @@
 	<div class="mypage">		
 	  		
 
-	  <h3 id="1、onCreate"><a href="#1、onCreate" class="headerlink" title="1、onCreate:"></a>1、onCreate:</h3><p>当activity第一次创建时调用.这里应该完成所有静态资源的建立, 比如使用setContentView(int)和布局资源定义你的UI视图, 使用findViewById(int)取出程序中需要交互的控件, 绑定数据. 此时视图还不存在,无法调用动画等.<br>还有需要注意, 每次activity启动, 不一定都会调用这个函数. 当当前activity只是被覆盖一部分, 当前activity再次可交互时,是只调用onResume方法, 不会调用onCreate方法. </p>
+	  <h3 id="1、onCreate"><a href="#1、onCreate" class="headerlink" title="1、onCreate:"></a>1、onCreate:</h3><p>当activity第一次创建时调用.这里应该完成所有静态资源的建立, 比如使用setContentView(int)和布局资源定义你的UI视图, 使用findViewById(int)取出程序中需要交互的控件, 绑定数据. 此时视图还不存在,无法调用动画等.<br>还有需要注意, 每次activity启动, 不一定都会调用这个函数. 当当前activity只是被覆盖一部分, 当前activity再次可交互时,是只调用onResume方法, 不会调用onCreate方法.<br><a id="more"></a></p>
 <h3 id="2、onStart"><a href="#2、onStart" class="headerlink" title="2、onStart:"></a>2、onStart:</h3><p>这个方法在活动由不可见变为可见的时候调用。这里是activity对用户是否可见的最好的指示器。</p>
 <h3 id="3、onResume"><a href="#3、onResume" class="headerlink" title="3、onResume:"></a>3、onResume:</h3><p>这个方法在活动准备好和用户进行交互的时候调用。可以在这里打开独占设备,如相机,在onPause中释放. </p>
 <h3 id="4、onPause"><a href="#4、onPause" class="headerlink" title="4、onPause:"></a>4、onPause:</h3><p>这个方法在系统准备去启动或者恢复另一个活动的时候调用。在这里系统将要离开当前Activity, 恢复其他activity. 用户在程序里做的任何改变都应该在此刻提交(通常用ContentProvide来保存数据). 还有需要在这里停止动画和其他耗费CPU的事件来确保转换到下一个activity的流畅度.<br>请记住:这个方法的实现必须很快完成, 不能占用太多时间, 因为在这个方法完成之前, 下一个activity不会恢复. 如果这个方法耗时较长, 就会影响用户体验. 如果对应的onPause()在500ms内还没有执行完，ActivityManagerService就会强制关闭这个Activity.<br>另外一个请记住的是:如果当前activity拥有独占资源(比如相机), 必须在这里释放, 以免在下一个activity中需要用到. </p>
