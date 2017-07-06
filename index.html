@@ -97,6 +97,35 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2017-07-07 </div>
+			<div class="article-title"><a href="/2017/07/07/adb端口被占用解决方法/" >adb端口被占用解决方法</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="adb端口被占用解决方法"><a href="#adb端口被占用解决方法" class="headerlink" title="adb端口被占用解决方法"></a>adb端口被占用解决方法</h1><p>一、杀死占用adb端口的进程</p>
+<ol>
+<li>5037为adb默认端口，输入netstat -ano | findstr “5037”查找哪些进程占用了该端口，记住非0地址的进程的ID。</li>
+<li>打开任务管理器，点击“进程”-&gt;“查看”-&gt;“选择列”-&gt;勾选PID。</li>
+<li>根据进程的ID查找相应的进程，然后结束该进程。<br>二、自己配置一个adb端口</li>
+<li>在系统环境变量中增加一个ANDROID_ADB_SERVER_PORT。</li>
+<li>将ANDROID_ADB_SERVER_PORT的值定义为自己想配置的端口号。</li>
+</ol>
+
+	
+	</div>
+  <a type="button" href="/2017/07/07/adb端口被占用解决方法/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-06-24 </div>
 			<div class="article-title"><a href="/2016/06/24/IntelliJ-IDEA快捷键-常用/" >IntelliJ-IDEA快捷键-常用</a></div>						
 		</h3>
@@ -263,6 +292,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/07/adb端口被占用解决方法/" ><i class="fa fa-file-o"></i>adb端口被占用解决方法</a>
+      </li>
+    
+      <li>
         <a href="/2016/06/24/IntelliJ-IDEA快捷键-常用/" ><i class="fa fa-file-o"></i>IntelliJ-IDEA快捷键-常用</a>
       </li>
     
@@ -278,10 +311,6 @@
         <a href="/2016/05/17/从谷歌商店下载apk的方法/" ><i class="fa fa-file-o"></i>从谷歌商店下载apk的方法</a>
       </li>
     
-      <li>
-        <a href="/2016/05/01/如何查看Android帮助文档/" ><i class="fa fa-file-o"></i>如何查看Android帮助文档</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -291,7 +320,7 @@
 		<h4>分类</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/Android/">Android<span>1</span></a></li>
+			<li><a href="/categories/Android/">Android<span>2</span></a></li>
 		
 			<li><a href="/categories/Java/">Java<span>1</span></a></li>
 		
@@ -326,7 +355,7 @@
   </div>
   <div class="container-narrow">
   <footer> <p>
-  &copy; 2016 AllenChan3721
+  &copy; 2017 AllenChan3721
   
       with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
 </p> </footer>
