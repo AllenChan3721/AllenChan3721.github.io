@@ -137,7 +137,7 @@
   <div class="row">
 	
 	
-		<h1 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h1><ol>
+		<h2 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h2><ol>
 <li>adb devices<br> 列举当前连接的调试设备。</li>
 <li>adb logcat<br> 打印log信息。</li>
 <li>adb install/uninstall<br> 安装/卸载apk。</li>
@@ -151,7 +151,7 @@
 <li>adb shell screenrecord<br>录屏, 做demo的话, 可以很方便的用这个命名录制视频, 然后借助工具将其转换成gif图, 超赞. 如下:</li>
 <li>adb shell dumpsys<br>强大的dump工具, 可以输出很多系统信息. 例如window, activity, task/back stack信息, wifi信息等.</li>
 </ol>
-<h1 id="adb端口被占用解决方法"><a href="#adb端口被占用解决方法" class="headerlink" title="adb端口被占用解决方法"></a>adb端口被占用解决方法</h1><p>一、杀死占用adb端口的进程</p>
+<h2 id="adb端口被占用解决方法"><a href="#adb端口被占用解决方法" class="headerlink" title="adb端口被占用解决方法"></a>adb端口被占用解决方法</h2><p>一、杀死占用adb端口的进程</p>
 <ol>
 <li>5037为adb默认端口，输入netstat -ano | findstr “5037”查找哪些进程占用了该端口，记住非0地址的进程的ID。</li>
 <li>打开任务管理器，点击“进程”-&gt;“查看”-&gt;“选择列”-&gt;勾选PID。</li>
