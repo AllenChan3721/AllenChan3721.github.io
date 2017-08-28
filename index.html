@@ -139,26 +139,65 @@
 	
 		<h2 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h2><ol>
 <li>adb devices<br>列举当前连接的调试设备。</li>
-<li>adb logcat<br>打印log信息。</li>
-<li>adb install/uninstall<br>安装/卸载apk。</li>
+<li>adb logcat<br>打印log信息。<br>语法：<code>[adb] logcat [&lt;option&gt;] ... [&lt;filter-spec&gt;] ...</code><br>例如：<code>adb logcat -s &quot;ComAssistant&quot;</code></li>
+<li>adb install/uninstall<br>安装/卸载apk。<br>安装apk命令：<code>adb install *path_to_apk*</code><br>卸载apk命令：<code>adb uninstall *package_name*</code></li>
 <li>adb pull/push<br>调试设备和开发PC之间拷贝文件。</li>
 <li>adb start/kill-server<br>启动/杀死adb的Server端进程。</li>
 <li>adb shell<br>进入调试设备的shell界面, 此时可以使用调试设备中的很多指令。</li>
-<li>adb connect/disconnect<br>通过wifi进行远程连接手机进行调试。</li>
+<li>adb connect/disconnect<br>通过wifi进行远程连接手机进行调试。<br>需先连上usb模式, 开启远程调试模式:<code>adb tcpip 5555</code></li>
 <li>adb shell am<br>am即activity manager.<br>该命令用来执行一些系统动作, 例如启动指定activity, 结束进程, 发送广播, 更改屏幕属性等. 调试利器.</li>
-<li>adb shell pm<br>pm即package manager.<br>用来执行package相关的操作, 例如安装卸载, 查询系统的安装包等.</li>
-<li>adb shell screencap<br>截屏, 比截屏快捷键更加方便快捷.（Android4.4及以上系统可用.）</li>
-<li>adb shell screenrecord<br>录屏, 做demo的话, 可以很方便的用这个命名录制视频, 然后借助工具将其转换成gif图, 超赞. 如下:</li>
-<li>adb shell dumpsys<br>强大的dump工具, 可以输出很多系统信息. 例如window, activity, task/back stack信息, wifi信息等.</li>
 </ol>
-<h2 id="adb端口被占用解决方法"><a href="#adb端口被占用解决方法" class="headerlink" title="adb端口被占用解决方法"></a>adb端口被占用解决方法</h2><p>一、杀死占用adb端口的进程</p>
+<ul>
+<li>start <intent>：根据intent指向启动Activity。Intent可以是显示的指向activity, 也可以是ACTION方式, 并且可以添加flag, data等参数信息。</intent></li>
+<li>startservice <intent>：启动Service。可以添加flag, data等参数信息。</intent></li>
+<li>broadcast <intent>：发送广播。可以添加flag, data等参数信息。</intent></li>
+<li>monitor：启动一个Crash和ANR的监听器。如有Crash或ANR会在控制台输出相关信息。</li>
+<li>force-stop <package>：强制停止该包相关的一切。传入package name。</package></li>
+<li>kill <package>：杀死该包相关的所有进程。传入package name。</package></li>
+<li>kill-all：杀死所有后台进程。</li>
+<li>display-size WxH：改变显示的分辨率。例如：adb shell am display-size 1280x720, 手机可能不支持。</li>
+<li>display-density <dpi>：改变显示的density。例如：adb shell am display-density 320, 手机可能不支持。</dpi></li>
+</ul>
 <ol>
+<li>adb shell pm<br>pm即package manager.<br>用来执行package相关的操作, 例如安装卸载, 查询系统的安装包等。</li>
+</ol>
+<ul>
+<li>list packages <filter>：列出满足filter条件的所有包。    </filter></li>
+<li>list permissions <group>：列出该Group的所有权限。</group></li>
+<li>list features：查看系统支持哪些feature。    例如：蓝牙, wifi, 摄像头等。</li>
+<li>install <path></path>/uninstall <package>：安装卸载。</package></li>
+<li>clear <package>：清除应用数据。</package></li>
+</ul>
+<ol>
+<li>adb shell screencap<br>截屏, 比截屏快捷键更加方便快捷。（Android4.4及以上系统可用）例如：<code>adb shell screencap /sdcard/screen.png</code></li>
+<li>adb shell screenrecord<br>录屏, 做demo的话, 可以很方便的用这个命名录制视频, 然后借助工具将其转换成gif图。（Android4.4及以上系统可用）</li>
+<li>adb shell dumpsys<br>强大的dump工具, 可以输出很多系统信息. 例如window, activity, task/back stack信息, wifi信息等。常用dumpsys有：</li>
+</ol>
+<ul>
+<li>activity：输出app组件相关信息。还可以用细分参数获得单项内容,。例如：adb shell dumpsys activity activities来获取activity task/back stack信息。细分参数：activites, service, providers,intents, broadcasts, processes。</li>
+<li>alarm：输出当前系统的alarm信息</li>
+<li>cpuinfo：输出当前的CPU使用情况</li>
+<li>diskstats：输出当前的磁盘使用状态</li>
+<li>batterystats：电池使用信息</li>
+<li>package：package相关信息, 相当于pm功能的集合    输出诸如libs, features, packages等信息</li>
+<li>meminfo：输出每个App的内存使用和系统内存状态    可以指定包名, 例如adb shell dumpsys meminfo com.anly.githubapp</li>
+<li>window：输出当前窗口相关信息    。细分参数：policy, animator, tokens, windows</li>
+</ul>
+<h2 id="二、adb端口被占用解决方法"><a href="#二、adb端口被占用解决方法" class="headerlink" title="二、adb端口被占用解决方法"></a>二、adb端口被占用解决方法</h2><ol>
+<li>杀死占用adb端口的进程</li>
+</ol>
+<ul>
 <li>5037为adb默认端口，输入netstat -ano | findstr “5037”查找哪些进程占用了该端口，记住非0地址的进程的ID。</li>
 <li>打开任务管理器，点击“进程”-&gt;“查看”-&gt;“选择列”-&gt;勾选PID。</li>
-<li>根据进程的ID查找相应的进程，然后结束该进程。<br>二、自己配置一个adb端口</li>
+<li>根据进程的ID查找相应的进程，然后结束该进程。</li>
+</ul>
+<ol>
+<li>自己配置一个adb端口</li>
+</ol>
+<ul>
 <li>在系统环境变量中增加一个ANDROID_ADB_SERVER_PORT。</li>
 <li>将ANDROID_ADB_SERVER_PORT的值定义为自己想配置的端口号。</li>
-</ol>
+</ul>
 <h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="http://www.jianshu.com/p/5980c8c282ef" target="_blank" rel="external">http://www.jianshu.com/p/5980c8c282ef</a><br><a href="https://developer.android.com/studio/command-line/adb.html#wireless" target="_blank" rel="external">https://developer.android.com/studio/command-line/adb.html#wireless</a></p>
 
 	
